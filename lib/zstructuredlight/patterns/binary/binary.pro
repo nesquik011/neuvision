@@ -1,46 +1,7 @@
-include(../../../../NEUVision.pri)
+TEMPLATE = subdirs
 
-TEMPLATE      = lib
-CONFIG       += plugin
-QT           -= gui
-QT           += widgets quick
-TARGET        = $$qtLibraryTarget(zbinaryprojectionplugin)
-DESTDIR       = $$Z3D_BUILD_DIR/plugins/structuredlightpatterns
-VERSION       = $$Z3D_VERSION
+SUBDIRS += \
+    src \
+    tests \
 
-HEADERS       = \
-    zbinarypatterndecoder.h \
-    zbinarypatternprojection.h \
-    zbinarypatternprojectionconfigwidget.h \
-    zbinarypatternprojectionplugin.h \
-
-SOURCES       = \
-    zbinarypatterndecoder.cpp \
-    zbinarypatternprojection.cpp \
-    zbinarypatternprojectionconfigwidget.cpp \
-    zbinarypatternprojectionplugin.cpp \
-
-FORMS        += \
-    zbinarypatternprojectionconfigwidget.ui
-
-RESOURCES    += \
-    resources.qrc
-
-
-
-###############################################################################
-# Core
-include($$PWD/../../../zcore/zcore.pri)
-
-###############################################################################
-# Structured light system
-include($$PWD/../../zstructuredlight.pri)
-
-###############################################################################
-# Camera acquisition
-include($$PWD/../../../zcameraacquisition/zcameraacquisition.pri)
-
-###############################################################################
-# OpenCV
-include($$PWD/../../../../3rdparty/opencv.pri)
-
+tests.depends = src

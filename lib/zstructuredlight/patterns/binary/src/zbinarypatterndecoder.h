@@ -29,7 +29,7 @@ namespace Z3D
 namespace ZBinaryPatternDecoder
 {
 
-cv::Mat decodeBinaryPatternImages(const std::vector<cv::Mat> &images, const std::vector<cv::Mat> &invImages, cv::Mat maskImg, bool isGrayCode = true);
+cv::Mat decodeBinaryPatternImages(const std::vector<cv::Mat> &images, const std::vector<cv::Mat> &invImages, const cv::Mat &maskImg, const bool isGrayCode = true);
 
 cv::Mat simplifyBinaryPatternData(cv::Mat image, cv::Mat maskImg, std::map<int, std::vector<cv::Vec2f> > &fringePoints);
 

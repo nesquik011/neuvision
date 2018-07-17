@@ -43,7 +43,7 @@ public:
                         ZPatternProjectionPtr patternProjection,
                         QObject *parent = nullptr);
 
-    ~ZStereoSLS();
+    virtual ~ZStereoSLS();
 
     double maxValidDistance() const;
 

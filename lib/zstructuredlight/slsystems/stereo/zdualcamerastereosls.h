@@ -21,7 +21,6 @@
 
 #include "zstereosls.h"
 
-#include <Z3DCameraAcquisition>
 #include <Z3DCameraCalibration>
 
 namespace Z3D
@@ -39,7 +38,7 @@ public:
                                   ZPatternProjectionPtr patternProjection,
                                   QObject *parent = nullptr);
 
-    ~ZDualCameraStereoSLS();
+    ~ZDualCameraStereoSLS() override;
 
     Z3D::ZCameraList cameras() const;
 

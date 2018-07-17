@@ -36,7 +36,7 @@ public:
                                     ZPatternProjectionPtr patternProjection,
                                     QObject *parent = nullptr);
 
-    ~ZSingleCameraStereoSLS();
+    ~ZSingleCameraStereoSLS() override;
 
 private:
     void processPatterns();

@@ -203,7 +203,7 @@ void ZBinaryPatternProjection::processImages(std::vector<std::vector<ZCameraImag
         allImages[iCam][1].resize(numPatterns); // inverted images
 
         for (unsigned int iPattern=0; iPattern<numPatterns; ++iPattern) {
-            int imageIndex = 2 * iPattern;
+            const unsigned int imageIndex = 2 * iPattern;
             allImages[iCam][0][iPattern] = acquiredImages[imageIndex  ][iCam]->cvMat();
             allImages[iCam][1][iPattern] = acquiredImages[imageIndex+1][iCam]->cvMat();
         }

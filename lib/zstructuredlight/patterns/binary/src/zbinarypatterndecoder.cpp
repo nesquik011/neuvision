@@ -34,21 +34,22 @@ namespace Z3D
 namespace ZBinaryPatternDecoder
 {
 
-unsigned int binaryToGray(unsigned int num)
+template<typename T>
+T binaryToGray(T num)
 {
     return (num >> 1) ^ num;
 }
 
 
-unsigned int grayToBinary(unsigned int num)
+template<typename T>
+T grayToBinary(T num)
 {
-    unsigned int len = 8 * sizeof(num);
-    unsigned int binary = 0;
+    const unsigned long len = 8 * sizeof(num);
 
     /// mask the MSB.
     unsigned int grayBit = 1 << ( len - 1 );
     /// copy the MSB.
-    binary = num & grayBit;
+    T binary = num & grayBit;
     /// store the bit we just set.
     unsigned int binBit = binary;
     /// traverse remaining Gray bits.
@@ -66,9 +67,9 @@ unsigned int grayToBinary(unsigned int num)
 }
 
 
-cv::Mat decodeBinaryPatternImages(const std::vector<cv::Mat> &images, const std::vector<cv::Mat> &invImages, cv::Mat maskImg, bool isGrayCode)
+cv::Mat decodeBinaryPatternImages(const std::vector<cv::Mat> &images, const std::vector<cv::Mat> &invImages, const cv::Mat &maskImg, const bool isGrayCode)
 {
-    unsigned int imgCount = images.size();
+    const size_t imgCount = images.size();
 
     const cv::Size &imgSize = images[0].size();
 
@@ -81,7 +82,7 @@ cv::Mat decodeBinaryPatternImages(const std::vector<cv::Mat> &images, const std:
     for (unsigned int i=0; i<imgCount; ++i) {
         const cv::Mat &regImg = images[i];
         const cv::Mat &invImg = invImages[i];
-        uint16_t bit = 1 << ( i+1 );
+        const uint16_t bit = uint16_t(1 << ( i+1 ));
         for (int y=0; y<imgHeight; ++y) {
             /// get pointers to first item of the row
             const uint8_t* maskImgData = maskImg.ptr<uint8_t>(y);
@@ -129,8 +130,8 @@ cv::Mat decodeBinaryPatternImages(const std::vector<cv::Mat> &images, const std:
                 continue;
             }
 
-            int valueLeft = *(decodedImgData - 1);
-            int valueRight = *(decodedImgData + 1);
+            const uint16_t valueLeft = *(decodedImgData - 1);
+            const uint16_t valueRight = *(decodedImgData + 1);
             if (valueLeft != Z3D::ZDecodedPattern::NO_VALUE && valueRight == valueLeft) {
                 /// assign value
                 value = valueLeft;

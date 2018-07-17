@@ -38,7 +38,7 @@ class ZStereoSystemImpl : public QObject
 
 public:
     explicit ZStereoSystemImpl(ZMultiCameraCalibrationPtr stereoCalibration, QObject *parent = nullptr);
-    ~ZStereoSystemImpl();
+    ~ZStereoSystemImpl() override;
 
     bool ready() const;
 

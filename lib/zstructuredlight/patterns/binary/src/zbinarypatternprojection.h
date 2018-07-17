@@ -46,7 +46,7 @@ class ZBinaryPatternProjection : public ZPatternProjection
 
 public:
     explicit ZBinaryPatternProjection(QObject *parent = nullptr);
-    ~ZBinaryPatternProjection();
+    ~ZBinaryPatternProjection() override;
 
 signals:
     void intensityChanged(double);
